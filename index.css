@@ -21,8 +21,19 @@ body{
     text-align: center;
 }
 
-.taskEntery input{
-    width: 78%;
+.inputTask{
+    width: 65%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 6px 7px 7px 0px grey;
+    border-color:#74b9ff;
+    color: #2d3436;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.dueDate{
     padding: 10px;
     margin: 10px;
     border-radius: 5px;
@@ -41,11 +52,13 @@ body{
     color: #00cec9;
     cursor: pointer;
     font-size: 17px;
+    background-color: #2d3436;
+    padding: 10px;
+    transition: 0.2s ease-in-out;
 }
 
 .addTaskBtn:hover{
-    color: #0984e3;
-    transition: 0.2s;
+    transform: scale(1.1);
 }
 
 .table{
@@ -75,22 +88,28 @@ body{
     margin: 0;
     box-shadow: 6px 7px 7px 0px gray;
     cursor: pointer;
+    transition: 0.2s ease-in-out;
 }
 
 .table tr:nth-child(even){
     border-radius: 10px;
     background-color: #dfe6e9;
+    transition: 0.2s ease-in-out;
 }
 
 .table tr:nth-child(odd){
     border-radius: 10px;
     background-color: #b2bec3;
+    transition: 0.2s ease-in-out;
+}
+
+tbody tr:hover{
+    transform: scale(1.05);
 }
 
 td:hover{
     background-color: #636e72;
     color: #ffffff;
-    transition: 0.2s;
 }
 
 .taskTable{
@@ -105,3 +124,50 @@ p{
     padding: 10px;
 }
 
+.editBox{
+    display: inline-block;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    left: 33vw;
+    width: 30%;
+    background-color: #40739e;
+    border-radius: 10px;
+    border: solid 3px black;
+    box-shadow: 6px 7px 7px 0px gray;
+    visibility: hidden;
+}
+
+.editBox theTask{
+    display: block;
+}
+
+.editBox input{
+    display: block;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left:32px;
+    margin-bottom: 10px;
+    border: solid 3px;
+    /* border-image: linear-gradient(45deg,rgb(255,0,0),rgb(255,115,0))1; */
+    width: 80%;
+}
+
+input:hover{
+    cursor: pointer;
+}
+
+.changeDoneBtn{
+    background-color: #2d3436;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:20px;
+    padding-right: 20px;
+    margin-top: 10px;
+    border-radius:8px;
+    color: #00cec9;
+}
+
+.theTask{
+    font-size: 20px;
+}
