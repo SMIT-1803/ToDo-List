@@ -13,7 +13,8 @@
         </div>
         <div class="taskEntery">
             <input class = "inputTask" type="text" name="taskEntery" id="taskEntery" placeholder="What do have planned?">
-            <p class="addTaskBtn">Add Task</p> 
+            <input class="dueDate" type="date"> 
+            <p class="addTaskBtn">Add Task</p>
         </div>
         <div class="taskTable">
             <table class="table">
@@ -22,10 +23,16 @@
                         <th>Tasks</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="tableBody">
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="editBox">
+        <p class="theTask"></p>
+        <input class="editedTaskName" placeholder="Rename Task" required>
+        <input class="editedDueDate" type="date"> 
+        <p class="changeDoneBtn">Done</p>
     </div>
     <script src="script.js"></script>
 </body>
