@@ -4,6 +4,14 @@ const theTable = document.querySelector(".tableBody");
 const dueDate = document.querySelector(".dueDate");
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 const editTaskBox = document.querySelector(".editBox");
+document.addEventListener("DOMContentLoaded", function () {
+    let dateInput = document.querySelector(".dueDate");
+    let dateInput2 = document.querySelector(".editedDueDate")
+    let today = new Date().toISOString().split("T")[0];
+    dateInput.setAttribute("min", today);
+    dateInput2.setAttribute("min", today);
+});
+
 
 // Load tasks from localStorage
 tasks.forEach(task => {
@@ -18,12 +26,16 @@ tasks.forEach(task => {
 
         taskPara.style.display = "inline-block";
         taskPara.style.width = "64%";
-        dueDatePara.style.display = "inline";
-        dueDatePara.style.paddingRight ="105px";
+        dueDatePara.style.width ="20%";
         done.style.color = "#fa6240";
 
         taskPara.innerText = task.text;
-        dueDatePara.innerText = "Due Date: "+task.due;
+        if(task.due!==""){
+            dueDatePara.innerText = "Due Date: "+task.due;
+        }
+        else{
+            dueDatePara.innerText = "No Due Date";
+        }
         edit.innerText = "EDIT";
         done.innerText = "DONE";
         tdTask.appendChild(taskPara);
@@ -33,19 +45,27 @@ tasks.forEach(task => {
         tr.appendChild(tdTask);
         theTable.appendChild(tr);
         
-        edit.addEventListener("click", () => {
+        edit.addEventListener("click", (event) => {
             const index = tasks.findIndex(task => task.text === taskPara.innerText);
             if (index !== -1) {
                 let theTitle = document.querySelector(".theTask");
                 theTitle.innerText = taskPara.innerText;
                 let editBox = document.querySelector(".editBox");
+                
+                let rect = event.target.closest("tr").getBoundingClientRect();
+                let boxWidth = editBox.offsetWidth;
+                editBox.style.position = "absolute";
+                editBox.style.top = `${rect.top + window.scrollY - editBox.offsetHeight+50}px`;
+                let leftPosition = rect.left + window.scrollX + (rect.width / 2) - (boxWidth / 2);
+                editBox.style.left = `${leftPosition}px`;
                 editBox.style.visibility = "visible";
         
-                // Fix: Replace existing button to remove old event listeners
                 let doneBtn = document.querySelector(".changeDoneBtn");
-                doneBtn.replaceWith(doneBtn.cloneNode(true));
+                doneBtn.replaceWith(doneBtn.cloneNode(true)); // Remove old event listeners
                 doneBtn = document.querySelector(".changeDoneBtn");
-        
+                document.querySelector(".editedDueDate").addEventListener("click", function() {
+                    this.showPicker();
+                });
                 doneBtn.addEventListener("click", () => {
                     let inputBox = document.querySelector(".editedTaskName");
                     let inputDueBox = document.querySelector(".editedDueDate");
@@ -59,6 +79,8 @@ tasks.forEach(task => {
                     if (newDueDate !== "") {
                         tasks[index].due = newDueDate;
                         dueDatePara.innerText = "Due Date: " + newDueDate;
+                    } else {
+                        dueDatePara.innerText = "No Due Date";
                     }
         
                     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -67,7 +89,8 @@ tasks.forEach(task => {
                     inputDueBox.value = "";
                 });
             }
-        });        
+        });
+        
 
         done.addEventListener('click', () => {
             const index = tasks.findIndex(task => task.text === taskPara.innerText);
@@ -76,17 +99,17 @@ tasks.forEach(task => {
                 tasks = tasks.filter(t=>t.status!=='completed');
                 localStorage.setItem("tasks", JSON.stringify(tasks));
                 tdTask.removeChild(edit);
-                done.style.color = "greenyellow";
+                done.style.color = "rgb(31, 161, 51)";
                 done.innerText = "Task Completed";
             }
         });
     }
-    else{
-        localStorage.removeItem(task);
-    }
 });
 
-// Add new task
+dueDate.addEventListener("click", function() {
+    this.showPicker();
+});
+
 addTaskBtn.addEventListener('click', () => {
     const task = inputTask.value;
     const dueDateVal = dueDate.value;
@@ -104,12 +127,16 @@ addTaskBtn.addEventListener('click', () => {
 
     taskPara.style.display = "inline-block";
     taskPara.style.width = "64%";
-    dueDatePara.style.display = "inline";
-    dueDatePara.style.paddingRight ="105px";
+    dueDatePara.style.width ="20%";
     done.style.color = "#fa6240";
 
     taskPara.innerText = task;
-    dueDatePara.innerText = "Due Date: "+dueDateVal;
+    if(dueDateVal!==""){
+        dueDatePara.innerText = "Due Date: "+dueDateVal;
+    }
+    else{
+        dueDatePara.innerText = "No Due Date";
+    }
     edit.innerText = "EDIT";
     done.innerText = "DONE";
     tdTask.appendChild(taskPara);
@@ -119,19 +146,29 @@ addTaskBtn.addEventListener('click', () => {
     tr.appendChild(tdTask);
     theTable.appendChild(tr);
 
-    edit.addEventListener("click", () => {
+    edit.addEventListener("click", (event) => {
         const index = tasks.findIndex(task => task.text === taskPara.innerText);
         if (index !== -1) {
             let theTitle = document.querySelector(".theTask");
             theTitle.innerText = taskPara.innerText;
             let editBox = document.querySelector(".editBox");
+            
+            // Get the clicked task's position
+            let rect = event.target.closest("tr").getBoundingClientRect();
+            let boxWidth = editBox.offsetWidth;
+            editBox.style.position = "absolute";
+            editBox.style.top = `${rect.top + window.scrollY - editBox.offsetHeight+50}px`;
+
+            let leftPosition = rect.left + window.scrollX + (rect.width / 2) - (boxWidth / 2);
+            editBox.style.left = `${leftPosition}px`;
             editBox.style.visibility = "visible";
     
-            // Fix: Replace existing button to remove old event listeners
             let doneBtn = document.querySelector(".changeDoneBtn");
-            doneBtn.replaceWith(doneBtn.cloneNode(true));
+            doneBtn.replaceWith(doneBtn.cloneNode(true)); // Remove old event listeners
             doneBtn = document.querySelector(".changeDoneBtn");
-    
+            document.querySelector(".editedDueDate").addEventListener("click", function() {
+                this.showPicker();
+            });
             doneBtn.addEventListener("click", () => {
                 let inputBox = document.querySelector(".editedTaskName");
                 let inputDueBox = document.querySelector(".editedDueDate");
@@ -145,6 +182,8 @@ addTaskBtn.addEventListener('click', () => {
                 if (newDueDate !== "") {
                     tasks[index].due = newDueDate;
                     dueDatePara.innerText = "Due Date: " + newDueDate;
+                } else {
+                    dueDatePara.innerText = "No Due Date";
                 }
     
                 localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -154,7 +193,7 @@ addTaskBtn.addEventListener('click', () => {
             });
         }
     });
-    
+        
 
     done.addEventListener('click', () => {
         const index = tasks.findIndex(task => task.text === taskPara.innerText);
@@ -164,7 +203,7 @@ addTaskBtn.addEventListener('click', () => {
             localStorage.setItem("tasks", JSON.stringify(tasks));
 
             tdTask.removeChild(edit);
-            done.style.color = "greenyellow";
+            done.style.color = "rgb(31, 161, 51)";
             done.innerText = "Task Completed";
         }
     });

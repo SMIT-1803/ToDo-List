@@ -1,173 +1,196 @@
-:root{
-    --headingcolor: rgb(45, 52, 54);
+:root {
+    --headingcolor: #E8E8E8;
+    --background-color: #141414;
+    --placeholder-color: black;
+    --heading-text-color: #00BFA5; 
+    --input-border-color: #FFC300;
+    --button-text-color: black;
+    --button-background-color: #00BFA5;
+    --table-header-color: #00E5FF;
+    --table-even-row: #1A1A2E;
+    --table-odd-row: #16213E;
+    --hover-background-color: #00BFA5;
+    --hover-text-color:black;
+    --edit-box-background: #311B92;
+    --edit-box-border: #007BFF;
+    --change-done-button-background: #007BFF;
+    --change-done-button-text: #FFD700;
+
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-body{
-    background-color: #f9f9f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.heading{
+body {
+    background-color: var(--background-color);
+}
+
+input::placeholder {
+    color: var(--placeholder-color);
+    font-weight: bold;
+    opacity: 1;
+}
+
+.heading {
     text-align: center;
-    color: #40739e;
+    color: var(--heading-text-color);
     margin: 10px;
+    margin-top: 20px;
 }
 
-.taskEntery{
+.heading p{
+    font-size: 30px;
+}
+
+.taskEntery {
     text-align: center;
 }
 
-.inputTask{
+.inputTask {
     width: 65%;
     padding: 10px;
     margin: 10px;
     border-radius: 5px;
-    box-shadow: 6px 7px 7px 0px grey;
-    border-color:#74b9ff;
-    color: #2d3436;
+    box-shadow: 2px 3px 11px 0px grey;
     font-weight: bold;
     font-size: 17px;
 }
 
-.dueDate{
+.dueDate {
     padding: 10px;
     margin: 10px;
     border-radius: 5px;
-    box-shadow: 6px 7px 7px 0px grey;
-    border-color:#74b9ff;
-    color: #2d3436;
+    box-shadow: 2px 3px 11px 0px grey;
+    border: 2px solid;
     font-weight: bold;
     font-size: 17px;
 }
 
-.addTaskBtn{
-    padding: 5px;
+.addTaskBtn {
     border-radius: 5px;
     display: inline-block;
     font-weight: bold;
-    color: #00cec9;
+    color: var(--button-text-color);
     cursor: pointer;
     font-size: 17px;
-    background-color: #2d3436;
-    padding: 10px;
+    background-color: var(--button-background-color);
+    padding: 13px;
     transition: 0.2s ease-in-out;
 }
 
-.addTaskBtn:hover{
+.addTaskBtn:hover {
     transform: scale(1.1);
 }
 
-.table{
+.table {
     margin: 10px;
     border-collapse: separate;
     width: 86%;
     border-spacing: 0 15px;
 }
 
-.table th{
+.table th {
     text-align: left;
     font-size: 25px;
     padding-top: 10px;
     padding-bottom: 10px;
     font-weight: bold;
-    color: #0984e3;
-    background-color: #f9f9f9;
+    color: var(--table-header-color);
+    background-color: var(--background-color);
 }
 
-.table td{
+.table td {
     font-size: 17px;
-    color: #2d3436;
+    color: var(--input-border-color);
     font-weight: bold;
     padding: 10px;
     border-radius: 11px;
     border-collapse: collapse;
     margin: 0;
-    box-shadow: 6px 7px 7px 0px gray;
+    box-shadow: 2px 3px 11px 0px gray;
     cursor: pointer;
     transition: 0.2s ease-in-out;
 }
 
-.table tr:nth-child(even){
+.table tr:nth-child(even) {
     border-radius: 10px;
-    background-color: #dfe6e9;
+    background-color: var(--table-even-row);
     transition: 0.2s ease-in-out;
 }
 
-.table tr:nth-child(odd){
+.table tr:nth-child(odd) {
     border-radius: 10px;
-    background-color: #b2bec3;
+    background-color: var(--table-odd-row);
     transition: 0.2s ease-in-out;
 }
 
-tbody tr:hover{
+tbody tr:hover {
     transform: scale(1.05);
 }
 
-td:hover{
-    background-color: #636e72;
-    color: #ffffff;
+td:hover {
+    background-color: var(--hover-background-color);
+    color: var(--hover-text-color);
 }
 
-.taskTable{
+.taskTable {
     display: flex;
     justify-content: center;
 }
 
-p{
+p {
     display: inline-block;
     cursor: pointer;
     font-weight: bold;
     padding: 10px;
 }
 
-.editBox{
-    display: inline-block;
+.editBox {
+    position: absolute;
     text-align: center;
     padding: 20px;
-    position: relative;
-    left: 33vw;
     width: 30%;
-    background-color: #40739e;
+    background-color: var(--edit-box-background);
     border-radius: 10px;
-    border: solid 3px black;
+    border: solid 3px var(--edit-box-border);
     box-shadow: 6px 7px 7px 0px gray;
     visibility: hidden;
+    z-index: 10;
 }
 
-.editBox theTask{
+
+.editBox theTask {
     display: block;
 }
 
-.editBox input{
+.editBox input {
     display: block;
     border-radius: 5px;
     padding: 10px;
-    margin-left:32px;
+    margin-left: 32px;
     margin-bottom: 10px;
     border: solid 3px;
-    /* border-image: linear-gradient(45deg,rgb(255,0,0),rgb(255,115,0))1; */
     width: 80%;
 }
 
-input:hover{
+input:hover {
     cursor: pointer;
 }
 
-.changeDoneBtn{
-    background-color: #2d3436;
-    padding-top:10px;
-    padding-bottom:10px;
-    padding-left:20px;
+.changeDoneBtn {
+    background-color: var(--change-done-button-background);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
     padding-right: 20px;
     margin-top: 10px;
-    border-radius:8px;
-    color: #00cec9;
+    border-radius: 8px;
+    color: var(--change-done-button-text);
 }
 
-.theTask{
+.theTask {
     font-size: 20px;
 }
