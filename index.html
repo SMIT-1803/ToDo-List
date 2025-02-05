@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My TODO List</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <p>My TO DO List</p>
+        </div>
+        <div class="taskEntery">
+            <input class = "inputTask" type="text" name="taskEntery" id="taskEntery" placeholder="Enter task">
+            <input class="dueDate" type="date"> 
+            <p class="addTaskBtn">Add Task</p>
+        </div>
+        <div class="taskTable">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Tasks</th>
+                    </tr>
+                </thead>
+                <tbody class="tableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="editBox">
+        <p class="theTask"></p>
+        <input class="editedTaskName" placeholder="Rename Task" required>
+        <input class="editedDueDate" type="date"> 
+        <p class="changeDoneBtn">Done</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

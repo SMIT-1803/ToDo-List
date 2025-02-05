@@ -1,0 +1,196 @@
+:root {
+    --headingcolor: #E8E8E8;
+    --background-color: #141414;
+    --placeholder-color: black;
+    --heading-text-color: #00BFA5; 
+    --input-border-color: #FFC300;
+    --button-text-color: black;
+    --button-background-color: #00BFA5;
+    --table-header-color: #00E5FF;
+    --table-even-row: #1A1A2E;
+    --table-odd-row: #16213E;
+    --hover-background-color: #00BFA5;
+    --hover-text-color:black;
+    --edit-box-background: #311B92;
+    --edit-box-border: #007BFF;
+    --change-done-button-background: #007BFF;
+    --change-done-button-text: #FFD700;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+}
+
+input::placeholder {
+    color: var(--placeholder-color);
+    font-weight: bold;
+    opacity: 1;
+}
+
+.heading {
+    text-align: center;
+    color: var(--heading-text-color);
+    margin: 10px;
+    margin-top: 20px;
+}
+
+.heading p{
+    font-size: 30px;
+}
+
+.taskEntery {
+    text-align: center;
+}
+
+.inputTask {
+    width: 65%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 3px 11px 0px grey;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.dueDate {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 3px 11px 0px grey;
+    border: 2px solid;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.addTaskBtn {
+    border-radius: 5px;
+    display: inline-block;
+    font-weight: bold;
+    color: var(--button-text-color);
+    cursor: pointer;
+    font-size: 17px;
+    background-color: var(--button-background-color);
+    padding: 13px;
+    transition: 0.2s ease-in-out;
+}
+
+.addTaskBtn:hover {
+    transform: scale(1.1);
+}
+
+.table {
+    margin: 10px;
+    border-collapse: separate;
+    width: 86%;
+    border-spacing: 0 15px;
+}
+
+.table th {
+    text-align: left;
+    font-size: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+    color: var(--table-header-color);
+    background-color: var(--background-color);
+}
+
+.table td {
+    font-size: 17px;
+    color: var(--input-border-color);
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 11px;
+    border-collapse: collapse;
+    margin: 0;
+    box-shadow: 2px 3px 11px 0px gray;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.table tr:nth-child(even) {
+    border-radius: 10px;
+    background-color: var(--table-even-row);
+    transition: 0.2s ease-in-out;
+}
+
+.table tr:nth-child(odd) {
+    border-radius: 10px;
+    background-color: var(--table-odd-row);
+    transition: 0.2s ease-in-out;
+}
+
+tbody tr:hover {
+    transform: scale(1.05);
+}
+
+td:hover {
+    background-color: var(--hover-background-color);
+    color: var(--hover-text-color);
+}
+
+.taskTable {
+    display: flex;
+    justify-content: center;
+}
+
+p {
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.editBox {
+    position: absolute;
+    text-align: center;
+    padding: 20px;
+    width: 30%;
+    background-color: var(--edit-box-background);
+    border-radius: 10px;
+    border: solid 3px var(--edit-box-border);
+    box-shadow: 6px 7px 7px 0px gray;
+    visibility: hidden;
+    z-index: 10;
+}
+
+
+.editBox theTask {
+    display: block;
+}
+
+.editBox input {
+    display: block;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 32px;
+    margin-bottom: 10px;
+    border: solid 3px;
+    width: 80%;
+}
+
+input:hover {
+    cursor: pointer;
+}
+
+.changeDoneBtn {
+    background-color: var(--change-done-button-background);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 10px;
+    border-radius: 8px;
+    color: var(--change-done-button-text);
+}
+
+.theTask {
+    font-size: 20px;
+}
